@@ -43,7 +43,7 @@ class LoginController extends Controller
     * @return response
     */
    public function socialLogin($social)
-   {
+   {  
        return Socialite::driver($social)->redirect();
    }
    /**
