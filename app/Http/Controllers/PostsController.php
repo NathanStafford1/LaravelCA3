@@ -5,10 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Database\Eloquent\Model;
 
 class PostsController extends Controller
 {
- 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
