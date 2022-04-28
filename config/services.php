@@ -29,5 +29,20 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'facebook' => [
+        'client_id' => '1120224634748024', //Facebook API
+        'client_secret' => '7303691d807eaff92bbb1657b96b1e', //Facebook Secret
+        'redirect' => 'http://laravel.localhost/login/facebook/callback',
+     ],
+     'github' => [
+        'client_id' => 'af54e6bae9a4edfc6cbb',
+        'client_secret' => '95afc7b40e6aca6419a7623c34bb6d86cb2ac',
+        'redirect' => 'http://laravel.localhost/login/github/callback',
+     ],
+     'twitter' => [
+        'client_id' => '8JS1GvRflY5g9N3kZc0heYTqL',
+        'client_secret' => 'eYujptPLBAAzdHIz8hiqGgz4MkJTcmL1JAGEuEZsGU1MykjK',
+        'redirect' => 'http://laravel.localhost/login/twitter/callback',
+     ],
 
 ];
