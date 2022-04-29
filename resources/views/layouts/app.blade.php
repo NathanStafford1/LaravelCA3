@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Phones Blog') }}</title>
+    <title>Phones blog</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,13 +18,13 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+<body class="bg-blue-100 h-screen antialiased leading-none font-sans">
     <div id="app">
-        <header class="bg-gray-800 py-6">
+        <header class="bg-purple-800 py-6">
             <div class="container mx-auto flex justify-between items-center px-6">
                 <div>
                     <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Phones Blog') }}
+                        Phones Blog
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">

@@ -12,7 +12,6 @@ class Comment extends Model
     Schema::create('comments', function (Blueprint $table) {
        $table->increments('id');
        $table->integer('user_id')->unsigned();
-       $table->integer('parent_id')->unsigned();
        $table->text('body');
        $table->integer('commentable_id')->unsigned();
        $table->string('commentable_type');
@@ -22,10 +21,6 @@ class Comment extends Model
 public function user()
     {
         return $this->belongsTo(User::class);
-    }
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
     
     use HasFactory;
