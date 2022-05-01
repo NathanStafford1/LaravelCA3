@@ -28,4 +28,5 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/comment/store', 'App\Http\Controllers\CommentController@store')->name('comment.add');
+Route::post('/blog/{post}/comments', [CommentController::class, 'storeComment']);
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);

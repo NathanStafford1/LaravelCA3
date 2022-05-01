@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class PostsController extends Controller
@@ -12,6 +13,25 @@ class PostsController extends Controller
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+   
+    public function showComment($slug)
+    {
+        return view('posts.show', [
+            'post'     => $post,
+            'comments' => $post->comments()->paginate(5)
+        ]);
+    }
+    public function storeComment(PostsRequest $request)
+    {
+        $data = $request->validated();
+
+        $post = new Post();
+        $post->title = $data['title'];
+        $post->text  = $data['text'];
+        $post->save();
+
+        return redirect('/blog/'.$post->id);
     }
 
     public function user()
@@ -81,9 +101,16 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
+        $post =  Post::where('slug', $slug)->first();
+        $comments =  Comment::where('id', $post->id)->paginate();
+
         return view('blog.show')
-            ->with('post', Post::where('slug', $slug)->first());
+            ->with([
+                'post'=> $post,
+                'comments' => $comments
+        ]);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -135,7 +162,12 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect('/blog')
-            ->with('message', 'Your post has been deleted!');
+         
+        ->with('message', 'Your post has been deleted!');
+    }
+    public function search(Request $request){
+        $posts = Post::where('title', 'like', '%' .$request->search . '%')->get();
+    return view('blog.search_post',compact('posts'));
     }
 }
 
