@@ -4,14 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\User;
 use Socialite;
-
-use Auth;
-
-use Exception;
-
-use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -25,6 +20,46 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->stateless()->redirect();
+    }
+    public function handleProviderCallback()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect('/login');
+        }
+        // only allow people with @company.com to login
+        if(explode("@", $user->email)[1] !== 'gmail.com'){
+            return redirect()->to('/');
+        }
+        // check if they're an existing user
+
+
+        $existingUser = User::where('email', $user->email)->first();
+        if($existingUser){
+            // log them in
+            auth()->login($existingUser, true);
+        } else {
+            // create a new user
+            $newUser                  = new User;
+            $newUser->name            = $user->name;
+            $newUser->email           = $user->email;
+            $newUser->google_id       = $user->id;
+            $newUser->avatar          = $user->avatar;
+            $newUser->avatar_original = $user->avatar_original;
+            $newUser->save();
+            auth()->login($newUser, true);
+        }
+        return redirect()->to('/Home');
+    }
 
     use AuthenticatesUsers;
 
@@ -34,7 +69,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -44,69 +78,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    /**
-    * Handle Social login request
-    *
-    * @return response
-    */
-   public function socialLogin($social)
-   {  
-       return Socialite::driver($social)->redirect();
-   }
-   /**
-    * Obtain the user information from Social Logged in.
-    * @param $social
-    * @return Response
-    */
-
-   public function redirectToProvider()
-
-   {
-
-       return Socialite::driver('google')->redirect();
-
-   }
-
-   public function handleProviderCallback()
-
-   {
-
-       try {
-
-           $user = Socialite::driver('google')->user();
-
-           $finduser = User::where('google_id', $user->id)->first();
-
-           if($finduser){
-
-               Auth::login($finduser);
-
-               return redirect('/home');
-
-           }else{
-
-               $newUser = User::create([
-
-                   'name' => $user->name,
-
-                   'email' => $user->email,
-
-             'google_id'=> $user->id
-
-               ]);
-
-               Auth::login($newUser);
-
-               return redirect()->back();
-
-           }
-
-       } catch (Exception $e) {
-
-           return redirect('auth/google');
-
-       }
-
-   }
-   
 }
