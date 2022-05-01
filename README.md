@@ -6,16 +6,16 @@
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ## Website homepage
-![alt text](https://ibb.co/f8Xkx85 "Homepage")
+![home](https://ibb.co/f8Xkx85)
 
 ## Website blog 
-![alt text](https://ibb.co/1QNg5B8 "Blog")
+![blog](https://ibb.co/1QNg5B8)
 
 ## Wesbite Login page
-![alt text](https://ibb.co/dLcydbz "Login")
+![login](https://ibb.co/dLcydbz)
 
 ## Wesbite blog posts
-![alt text](https://ibb.co/RpZYKF3 "Blogs")
+![Blogs](https://ibb.co/RpZYKF3")
 
 
 This repository is linked to [this youtube video](https://www.youtube.com/watch?v=HKJDLXsTr8A&t=4710s) where I show you how to create a complete blog in Laravel 8 using best practices.
