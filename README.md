@@ -2,16 +2,16 @@
 
 Link to my [youtube video](https://youtu.be/Kcf8EIpy9aQ) demonstrating my website
 ## Website homepage
-![home](https://ibb.co/f8Xkx85.png)
+![home](https://ibb.co/f8Xkx85/HomePage.png)
 
 ## Website blog 
-![blog](https://ibb.co/1QNg5B8.png)
+![blog](https://ibb.co/1QNg5B8/Blog.png)
 
 ## Wesbite Login page
-![login](https://ibb.co/dLcydbz.png)
+![login](https://ibb.co/dLcydbz/login.png)
 
 ## Wesbite blog posts
-![Blogs](https://ibb.co/RpZYKF3".png)
+![Blogs](https://ibb.co/RpZYKF3/Blog-Posts.png)
 
 
 This repository is linked to [this youtube video](https://www.youtube.com/watch?v=HKJDLXsTr8A&t=4710s) where I show you how to create a complete blog in Laravel 8 using best practices.
