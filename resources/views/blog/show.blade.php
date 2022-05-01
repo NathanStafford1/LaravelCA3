@@ -31,8 +31,8 @@
             <label for="author" class="text-sm font-medium text-gray-700">Author</label>
             <input type="text" name="author" class="mt-1 py-2 px-3 block w-full borded border-gray-400 rounded-md shadow-sm" value="{{ old('author')}}" required>
 
-            <label for="author" class="mt-6 block text-sm font-medium text-gray-700">Text</label>
-            <textarea name="text" class="mt-1 py-2 px-3 block w-full borded border-gray-400 rounded-md shadow-sm" required>{{ old('text') }}</textarea>
+            <label for="author" class="mt-6 block text-sm font-medium text-gray-700">Comment</label>
+            <textarea name="text" class="mt-1 py-2 px-3 block w-full borded border-purple-400 rounded-md shadow-sm" required>{{ old('text') }}</textarea>
 
             @if ($errors->any())
                 <div class="mt-6">
