@@ -1,5 +1,23 @@
 ## Laravel 8 Complete Blog
 
+# Link to my youtube video demonstrating my website
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=https://youtu.be/Kcf8EIpy9aQ
+" target="_blank"><img src="http://img.youtube.com/vi/https://youtu.be/Kcf8EIpy9aQ/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+## Website homepage
+![alt text](https://ibb.co/f8Xkx85 "Homepage")
+
+## Website blog 
+![alt text](https://ibb.co/1QNg5B8 "Blog")
+
+## Wesbite Login page
+![alt text](https://ibb.co/dLcydbz "Login")
+
+## Wesbite blog posts
+![alt text](https://ibb.co/RpZYKF3 "Blogs")
+
+
 This repository is linked to [this youtube video](https://www.youtube.com/watch?v=HKJDLXsTr8A&t=4710s) where I show you how to create a complete blog in Laravel 8 using best practices.
 
 •	Author: Code With Dary <br>
