@@ -21,10 +21,14 @@ Route::get('/', [PagesController::class, 'index']);
 Route::resource('/blog', PostsController::class);
 
 Auth::routes();
+    
+    Route::get('/redirect', '\App\Http\Controllers\Auth\LoginController@redirectToProvider');
+    
+    Route::get('/callback', '\App\Http\Controllers\Auth\LoginController@handleProviderCallback');
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/login/{social}','Auth\LoginController@socialLogin')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
 Route::get('/login/{social}/callback','Auth\LoginController@handleProviderCallback')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
 
-Route::post('/comment/store', '\App\Http\Controllers\CommentController@store')->name('comment.add');
+Route::post('/comment/store', 'App\Http\Controllers\CommentController@store')->name('comment.add');

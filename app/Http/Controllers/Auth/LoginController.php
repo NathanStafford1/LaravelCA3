@@ -5,6 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
+
+use Auth;
+
+use Exception;
+
+use App\User;
 
 class LoginController extends Controller
 {
@@ -51,15 +58,55 @@ class LoginController extends Controller
     * @param $social
     * @return Response
     */
-   public function handleProviderCallback($social)
+
+   public function redirectToProvider()
+
    {
-       $userSocial = Socialite::driver($social)->user();
-       $user = User::where(['email' => $userSocial->getEmail()])->first();
-       if($user){
-           Auth::login($user);
-           return redirect()->action('HomeController@index');
-       }else{
-           return view('auth.register',['name' => $userSocial->getName(), 'email' => $userSocial->getEmail()]);
-       }
+
+       return Socialite::driver('google')->redirect();
+
    }
+
+   public function handleProviderCallback()
+
+   {
+
+       try {
+
+           $user = Socialite::driver('google')->user();
+
+           $finduser = User::where('google_id', $user->id)->first();
+
+           if($finduser){
+
+               Auth::login($finduser);
+
+               return redirect('/home');
+
+           }else{
+
+               $newUser = User::create([
+
+                   'name' => $user->name,
+
+                   'email' => $user->email,
+
+             'google_id'=> $user->id
+
+               ]);
+
+               Auth::login($newUser);
+
+               return redirect()->back();
+
+           }
+
+       } catch (Exception $e) {
+
+           return redirect('auth/google');
+
+       }
+
+   }
+   
 }

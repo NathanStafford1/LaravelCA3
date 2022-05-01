@@ -9,12 +9,33 @@
                 </h1>
                 <a 
                     href="/blog"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full">
                     View blogs
                 </a>
             </div>
         </div>
     </div>
+    <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-solid">
+      <div>
+          <img src="https://cdn.thewirecutter.com/wp-content/media/2021/08/budget-android-phone-2048px-3x2-1.jpg?auto=webp&quality=60&crop=1.91:1&width=1200" width="700" alt="">
+      </div>
+
+      <div class="m-auto sm:m-auto text-left w-4/5 block bg-clip-border p-6 border-4  border-solid">
+          <h2 class="text-3xl font-extrabold text-purple-600">
+              Struggling to pick a new phone?
+          </h2>
+
+          <p class="font-extrabold text-purple-600 text-s pb-9">
+              People are sharing their thoughts on phones here, make an account and try for yourself!
+          </p>
+
+          <a 
+              href="/blog"
+              class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full md:shadow-lg">
+              View blogs
+          </a>
+      </div>
+  </div>
 
     <div class="text-center py-15">
         <span class="uppercase text-s text-gray-400">
